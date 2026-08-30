@@ -1,50 +1,48 @@
-# Welcome to your Expo app 👋
+# Piedra, Papel o Tijeras 🪨📄✂️
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App móvil desarrollada en React Native con Expo para jugar Piedra, Papel o Tijeras contra la computadora. Proyecto realizado para la materia **Desarrollo de interfaces de usuario** del Tecnológico de Monterrey.
 
-## Get started
+## Descripción
 
-1. Install dependencies
+El juego permite al usuario elegir entre piedra, papel o tijeras. La computadora genera su jugada de forma aleatoria, se compara contra la del jugador, y se muestra el resultado en un cuadro de diálogo. El marcador acumula los puntos de cada jugador a lo largo de la partida.
 
-   ```bash
-   npm install
-   ```
+## Arquitectura
 
-2. Start the app
+El proyecto sigue el patrón de diseño **MVC (Model-View-Controller)**:
 
-   ```bash
-   npx expo start
-   ```
+- **Model** (`models/`): contiene la lógica del juego, separada en:
+  - `valueobjects/`: objetos de datos simples (`PlayerChoiceVO`, `ScoreVO`, `MatchVO`)
+  - `managers/`: lógica de negocio (`RandomManager` genera la jugada de la computadora, `MatchManager` calcula el ganador y actualiza el marcador)
+- **View** (`screens/GameScreen.js`): la interfaz visual — botones, marcador y cuadro de diálogo, construida con `react-native-paper`
+- **Controller**: la función `handlePlay` dentro de `GameScreen.js` conecta la vista con el modelo — recibe la acción del usuario, le pide al modelo que la procese, y actualiza la vista con el resultado
 
-In the output, you'll find options to open the app in a
+Model y View nunca se comunican directamente entre sí; todo pasa por el Controller.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Pruebas
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+El proyecto sigue **TDD (Test-Driven Development)**. Las pruebas cubren:
 
-## Get a fresh project
+- `RandomManager`: verifica que solo genere valores válidos (piedra, papel o tijeras)
+- `MatchManager`: verifica los 9 escenarios posibles del juego (todas las combinaciones de jugadas)
 
-When you're ready, run:
+Para correr las pruebas:
 
-```bash
-npm run reset-project
-```
+\`\`\`bash
+npx jest
+\`\`\`
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Cómo correr el proyecto
 
-## Learn more
+\`\`\`bash
+npm install
+npx expo start --tunnel
+\`\`\`
 
-To learn more about developing your project with Expo, look at the following resources:
+Escanea el código QR con la app **Expo Go** desde tu celular para ver la app en tiempo real.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Tecnologías
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- React Native
+- Expo
+- react-native-paper
+- Jest
