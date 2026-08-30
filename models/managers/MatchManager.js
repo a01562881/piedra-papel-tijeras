@@ -1,4 +1,5 @@
 const MatchVO = require('../valueobjects/MatchVO');
+const ScoreVO = require('../valueobjects/ScoreVO');
 
 const WINNING_COMBOS = {
   piedra: 'tijeras',
