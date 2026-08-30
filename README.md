@@ -1,6 +1,6 @@
 # Piedra, Papel o Tijeras 🪨📄✂️
 
-App móvil desarrollada en React Native con Expo para jugar Piedra, Papel o Tijeras contra la computadora. Proyecto realizado para la materia **Desarrollo de interfaces de usuario** del Tecnológico de Monterrey.
+App móvil desarrollada en React Native con Expo para jugar Piedra, Papel o Tijeras contra la computadora. 
 
 ## Descripción
 
